@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnSphere - Courses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./sayooj logo/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./sayooj logo/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./sayooj logo/android-chrome-512x512.png">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a73e8;
+            --secondary: #4285f4;
+            --accent: #4285f4;
+            --light: #f5f7fa;
+            --dark: #ffffff;
+            --success: #00cc99;
+            --text: #333333;
+            --border: #e0e0e0;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: clamp(14px, 2.5vw, 16px);
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+            min-height: 44px;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(26, 115, 232, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        header {
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--dark);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: clamp(20px, 5vw, 24px);
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 12px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: clamp(14px, 2.5vw, 16px);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hamburger i {
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active i.fa-bars {
+            opacity: 0;
+            transform: rotate(90deg);
+        }
+
+        .hamburger.active i.fa-times {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        .hamburger i.fa-times {
+            position: absolute;
+            opacity: 0;
+            transform: rotate(-90deg);
+        }
+
+        .auth-buttons .btn {
+            margin-left: 8px;
+            border-radius: 0px;
+            padding: 8px 16px;
+            font-size: clamp(12px, 2.2vw, 14px);
+            min-height: 40px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .user-profile-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-right: 8px;
+        }
+
+        .user-profile-icon:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        .user-name-dropdown {
+            display: none;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background: var(--dark);
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            min-width: 140px;
+            z-index: 1000;
+        }
+
+        .user-name-dropdown.active {
+            display: block;
+        }
+
+        .user-name-dropdown span {
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Remaining styles from course.html */
+        .courses-section {
+            padding: 120px 0 80px;
+            background: var(--dark);
+        }
+
+        .courses-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .courses-header h1 {
+            font-size: clamp(24px, 4vw, 32px);
+            margin-bottom: 16px;
+        }
+
+        .courses-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: var(--text);
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 0px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 350px;
+            position: relative;
+            transition: var(--transition);
+            border-radius: 0px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 40px;
+            border: 2px solid var(--border);
+            border-radius: 0px;
+            font-size: 14px;
+            background: var(--light);
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text);
+            font-size: 16px;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .filter-select {
+            padding: 10px 16px;
+            border: 2px solid var(--border);
+            border-radius: 0px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            color: var(--text);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333333'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px top 50%;
+            background-size: 16px;
+            min-width: 160px;
+            transition: var(--transition);
+        }
+
+        .filter-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+            outline: none;
+        }
+
+        .filter-select:hover {
+            border-color: var(--primary);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .course-card {
+            background: var(--light);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-image {
+            height: 160px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            position: relative;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .course-content {
+            padding: 20px;
+        }
+
+        .course-category {
+            display: inline-block;
+            background: rgba(26, 115, 232, 0.1);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .course-title {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .course-description {
+            color: var(--text);
+            margin-bottom: 16px;
+            min-height: 60px;
+            font-size: 14px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .course-instructor {
+            display: flex;
+            align-items: center;
+        }
+
+        .instructor-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+
+        .course-rating {
+            display: flex;
+            align-items: center;
+            color: #facc15;
+        }
+
+        .course-youtube {
+            display: flex;
+            align-items: center;
+        }
+
+        .course-youtube a {
+            color: #ff0000;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .course-youtube a:hover {
+            color: #cc0000;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--light);
+            border-radius: 2px;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+            animation: modalAppear 0.4s ease-out;
+        }
+
+        @keyframes modalAppear {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 24px;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            color: var(--primary);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .modal-header p {
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 14px;
+            background: var(--dark);
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            font-size: 12px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 6px;
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .modal-footer {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+         footer {
+            background: var(--primary);
+            color: var(--text);
+            padding: clamp(40px, 8vw, 60px) 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            color: var(--light);
+            margin-bottom: 15px;
+            font-size: clamp(16px, 3vw, 18px);
+        }
+
+        .footer-col p {
+            font-size: clamp(12px, 2.5vw, 14px);
+            color: var(--light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        .footer-links a:hover {
+            color: var(--light);
+            padding-left: 5px;
+        }
+         .social-links {
+            display: flex;
+            margin-top: 12px;
+            gap: 8px;
+        }
+
+        .social-links a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgb(255, 255, 255);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: black;
+            color: white;
+            transform: translateY(-5px);
+        }
+         .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: 0px;
+            font-size: clamp(12px, 2.5vw, 14px);
+            background: var(--light);
+            color: var(--text);
+            min-height: 40px;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--light);
+            outline: none;
+        }
+
+        .newsletter-form .btn {
+            padding: 10px 20px;
+            font-size: clamp(12px, 2.5vw, 14px);
+            background: var(--success);
+            color: white;
+            border-radius: 0px;
+        }
+
+        .newsletter-form .btn:hover {
+            background: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: clamp(12px, 2vw, 13px);
+        }
+
+        .modal-footer p {
+            margin-top: 12px;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .modal-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .modal-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #ff4d4f;
+            font-size: 18px;
+            margin-top: 16px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            margin: 16px 0;
+            display: none;
+        }
+
+        .loading-spinner.active {
+            display: block;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .pagination-btn {
+            padding: 8px 16px;
+            background: var(--light);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .pagination-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .pagination-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .pagination-btn.disabled {
+            background: var(--border);
+            color: var(--text);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                align-items: flex-start;
+                padding: 10px 0;
+            }
+
+            .hamburger {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: var(--dark);
+                padding: 15px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 8px 0;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+                padding: 8px 0;
+                display: block;
+            }
+
+            .auth-buttons {
+                margin-top: 8px;
+                gap: 6px;
+            }
+
+            .auth-buttons .btn {
+                padding: 6px 10px;
+                font-size: 10px;
+                min-height: 31px;
+            }
+
+            .user-profile-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .user-name-dropdown {
+                top: 40px;
+                min-width: 120px;
+            }
+
+            .courses-section {
+                padding: 100px 0 60px;
+            }
+
+            .courses-header h1 {
+                font-size: 28px;
+            }
+
+            .courses-header p {
+                font-size: 14px;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px;
+            }
+
+            .search-box {
+                max-width: 100%;
+                margin-bottom: 16px;
+            }
+
+            .filter-options {
+                flex-direction: column;
+                width: 100%;
+                gap: 12px;
+            }
+
+            .filter-select {
+                width: 100%;
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .course-image {
+                height: 140px;
+                font-size: 40px;
+            }
+
+            .course-content {
+                padding: 16px;
+            }
+
+            .course-title {
+                font-size: 14px;
+            }
+
+            .course-description {
+                font-size: 12px;
+                min-height: 50px;
+            }
+
+            .course-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .modal-content {
+                padding: 16px;
+                max-width: 90%;
+            }
+
+            .modal-header h2 {
+                font-size: 20px;
+            }
+
+            .modal-header p {
+                font-size: 12px;
+            }
+
+            .form-group input {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .form-group label {
+                font-size: 12px;
+            }
+
+            .btn {
+                padding: 8px 20px;
+                font-size: 12px;
+                border-radius: 5px;
+            }
+
+            .modal-footer p {
+                font-size: 12px;
+            }
+
+            .pagination {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .pagination-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 18px;
+                margin-left: 5px;
+                padding-top: 8px;
+            }
+
+            .hamburger {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                top: 50px;
+                padding: 10px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .courses-header h1 {
+                font-size: 24px;
+            }
+
+            .courses-header p {
+                font-size: 12px;
+            }
+
+            .filter-bar {
+                padding: 12px;
+            }
+
+            .search-box input {
+                padding: 10px 12px 10px 36px;
+                font-size: 12px;
+            }
+
+            .search-box i {
+                left: 10px;
+                font-size: 14px;
+            }
+
+            .filter-select {
+                font-size: 12px;
+                padding: 8px 10px;
+            }
+
+            .course-card {
+                padding: 20px;
+            }
+
+            .course-image {
+                height: 160px;
+                font-size: 36px;
+            }
+
+            .course-content {
+                padding: 12px;
+            }
+
+            .course-title {
+                font-size: 13px;
+            }
+
+            .course-description {
+                font-size: 11px;
+            }
+
+            .course-category {
+                font-size: 11px;
+                padding: 3px 10px;
+            }
+
+            .course-rating span {
+                font-size: 12px;
+            }
+
+            .modal-content {
+                padding: 12px;
+            }
+
+            .modal-header h2 {
+                font-size: 18px;
+            }
+
+            .close-btn {
+                font-size: 20px;
+            }
+
+            .pagination-btn {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-times"></i>
+                </div>
+                <a href="index.html" class="logo" id="home-link">
+                    <i class="fas fa-graduation-cap"></i>
+                    LearnSphere
+                </a>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html" class="nav-link" data-page="home">Home</a></li>
+                    <li><a href="course.html" class="nav-link">Courses</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact-us.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="auth-buttons" id="auth-buttons">
+                    <a href="#" class="btn btn-outline" id="login-btn">Login</a>
+                    <div class="user-profile" id="user-profile" style="display: none;">
+                        <div class="user-profile-icon" id="user-profile-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-name-dropdown" id="user-name-dropdown">
+                            <span id="user-name"></span>
+                        </div>
+                        <a href="#" class="btn btn-outline" id="logout-btn">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="courses-section">
+        <div class="container">
+            <div class="courses-header">
+                <h1>Explore Our Courses</h1>
+                <p>Discover a wide range of courses taught by industry experts to help you achieve your learning goals.</p>
+            </div>
+            <div class="filter-bar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search courses...">
+                </div>
+                <div class="filter-options">
+                    <select class="filter-select" id="category-filter">
+                        <option value="all">All Categories</option>
+                        <option value="Coding">Coding</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Business">Business</option>
+                        <option value="Design">Design</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Mobile Development">Mobile Development</option>
+                        <option value="Productivity">Productivity</option>
+                    </select>
+                    <select class="filter-select" id="difficulty-filter">
+                        <option value="all">All Difficulties</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
+            </div>
+            <div class="loading-spinner" id="courses-loading">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div class="error-message" id="fetch-error" style="display: none;">Failed to fetch courses. Please try again later.</div>
+            <div class="error-message" id="no-courses-error" style="display: none;">No courses found for the selected category or filters.</div>
+            <div class="courses-grid" id="courses-grid"></div>
+            <div class="pagination" id="pagination"></div>
+        </div>
+    </section>
+
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <p>Join our learning community today</p>
+            </div>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm">Confirm Password</label>
+                    <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 16px;" id="signup-submit">Sign Up</button>
+                <p class="loading-message" id="signup-loading">Processing signup...</p>
+                <p class="error-message" id="signup-error"></p>
+            </form>
+            <div class="modal-footer">
+                <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+            </div>
+        </div>
+    </div>
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue your learning journey</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 16px;" id="login-submit">Login</button>
+                <p class="loading-message" id="login-loading">Processing login...</p>
+                <p class="error-message" id="login-error"></p>
+            </form>
+            <div class="modal-footer">
+                <p>Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LearnSphere</h3>
+                    <p>Empowering learners worldwide with accessible, high-quality education.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/sayoojanil"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/sayoojanilvp/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.google.com/?zx=1760457062786&no_sw_cr=1"><i class="fab fa-google"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Explore</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="course.html" class="nav-link">Courses</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest courses and updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 LearnSphere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+            
+            // Hamburger menu toggle
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Course rendering and filtering
+            const courses = [
+                {
+                    id: 1,
+                    title: 'Introduction to Python Programming',
+                    category: 'Coding',
+                    difficulty: 'Beginner',
+                    description: 'Learn the basics of Python programming, including syntax, variables, and functions.',
+                    instructor: 'Jane Doe',
+                    rating: 4.5,
+                    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYZqZkpMyiN2uSuT7GAf6JSkJ44YsZqoQHdw&s',
+                    duration: '4 weeks',
+                    lessons: 12,
+                    price: '$49.99',
+                    level: 'Beginner',
+                    details: 'This course introduces you to Python programming. You will learn the fundamentals including syntax, variables, loops, and functions, with hands-on projects to solidify your skills.',
+                    youtubeLink: 'https://www.youtube.com/watch?v=rfscVS0vtbw'
+                },
+                {
+                    id: 2,
+                    title: 'Advanced Web Development',
+                    category: 'Web Development',
+                    difficulty: 'Advanced',
+                    description: 'Master modern web technologies like React, Node.js, and advanced CSS.',
+                    instructor: 'John Smith',
+                    rating: 4.8,
+                    image: 'https://miro.medium.com/0*M4bxiCIjcTK-2Xr6.jpeg',
+                    duration: '6 weeks',
+                    lessons: 18,
+                    price: '$89.99',
+                    level: 'Advanced',
+                    details: 'Dive deep into modern web development with React, Node.js, and advanced CSS techniques. Build real-world projects and learn best practices for scalable applications.',
+                    youtubeLink: 'https://www.youtube.com/watch?v=bMknfKXIFA8'
+                },
+                {
+                    id: 3,
+                    title: 'Data Science with R',
+                    category: 'Data Science',
+                    difficulty: 'Intermediate',
+                    description: 'Explore data analysis and visualization using R programming language.',
+                    instructor: 'Emily Johnson',
+                    rating: 4.3,
+                    image: 'https://cdn.prod.website-files.com/63ccf2f0ea97be12ead278ed/644a18b637053fa3709c5ba2_what-is-data-science.jpg',
+                    duration: '5 weeks',
+                    lessons: 15,
+                    price: '$69.99',
+                    level: 'Intermediate',
+                    details: 'Learn data analysis, visualization, and statistical modeling using R. This course covers data manipulation, exploratory data analysis, and creating insightful visualizations.',
+                    youtubeLink: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI'
+                },
+                {
+                    id: 4,
+                    title: 'Business Analytics Fundamentals',
+                    category: 'Business',
+                    difficulty: 'Beginner',
+                    description: 'Understand key business analytics concepts and tools to drive decisions.',
+                    instructor: 'Michael Brown',
+                    rating: 4.6,
+                    image: 'https://images.ctfassets.net/pdf29us7flmy/5iQM8DSaB5iF4Gd9lcJiSy/340379739c3bf1758ba1b3635716660a/business-analyst-skills.png',
+                    duration: '3 weeks',
+                    lessons: 10,
+                    price: '$39.99',
+                    level: 'Beginner',
+                    details: 'Get started with business analytics, covering key concepts, tools, and techniques to make data-driven decisions in a business environment.',
+                    youtubeLink: 'https://www.youtube.com/watch?v=2XL_xP-0CSQ'
+                },
+                {
+                    id: 5,
+                    title: 'UI/UX Design Principles',
+                    category: 'Design',
+                    difficulty: 'Intermediate',
+                    description: 'Learn to create user-friendly interfaces and engaging user experiences.',
+                    instructor: 'Sarah Davis',
+                    rating: 4.7,
+                    image: 'https://img.freepik.com/free-vector/gradient-style-ui-ux-background_52683-69621.jpg?semt=ais_hybrid&w=740&q=80',
+                    duration: '4 weeks',
+                    lessons: 14,
+                    price: '$59.99',
+                    level: 'Intermediate',
+                    details: 'Master the principles of UI/UX design, including wireframing, prototyping, and user testing to create intuitive and engaging interfaces.',
+                    youtubeLink: 'https://www.youtube.com/watch?v=0p9rW6H2b2U'
+                },
+                {
+                    id: 6,
+                    title: 'Digital Marketing Strategies',
+                    category: 'Marketing',
+                    difficulty: 'Intermediate',
+                    description: 'Master SEO, social media, and content marketing strategies.',
+                    instructor: 'David Wilson',
+                    rating: 4.4,
+                    image: 'https://www.springboard.com/blog/wp-content/uploads/2022/06/what-is-digital-marketing.png',
+                    duration: '5 weeks',
+                    lessons: 16,
+                    price: '$64.99',
+                    level: 'Intermediate',
+                    details: 'Learn advanced digital marketing techniques, including SEO, social media marketing, and content strategies to grow your online presence.',
+                    youtubeLink: 'https://www.youtube.com/watch?v=OJ9vC1hk84E'
+                },
+                {
+                    id: 7,
+                    title: 'Mobile App Development with Flutter',
+                    category: 'Mobile Development',
+                    difficulty: 'Advanced',
+                    description: 'Build cross-platform mobile apps using Flutter and Dart.',
+                    instructor: 'Lisa Taylor',
+                    rating: 4.9,
+                    image: 'https://cdn.sanity.io/images/0mnqm898/production/52566e987046623a25e2f40a11fa99bbd9f4d4d2-2240x1260.png',
+                    duration: '6 weeks',
+                    lessons: 20,
+                    price: '$99.99',
+                    level: 'Advanced',
+                    details: 'Develop high-performance, cross-platform mobile applications using Flutter and Dart, with a focus on building responsive and scalable apps.',
+                    youtubeLink: 'https://www.youtube.com/watch?v=1ukSR1GRtMU'
+                },
+                {
+                    id: 8,
+                    title: 'Productivity Hacks for Professionals',
+                    category: 'Productivity',
+                    difficulty: 'Beginner',
+                    description: 'Boost your efficiency with time management and organizational skills.',
+                    instructor: 'James Lee',
+                    rating: 4.2,
+                    image: 'https://miro.medium.com/1*f3FL3QCQ5CfKnW4NaepOIA.jpeg',
+                    duration: '2 weeks',
+                    lessons: 8,
+                    price: '$29.99',
+                    level: 'Beginner',
+                    details: 'Discover practical productivity techniques, including time management, task prioritization, and organizational strategies for professionals.',
+                    youtubeLink: 'https://www.youtube.com/watch?v=fL8z_oIkp0k'
+                }
+            ];
+
+            const coursesGrid = document.getElementById('courses-grid');
+            const searchInput = document.getElementById('search-input');
+            const categoryFilter = document.getElementById('category-filter');
+            const difficultyFilter = document.getElementById('difficulty-filter');
+            const pagination = document.getElementById('pagination');
+            const coursesLoading = document.getElementById('courses-loading');
+            const noCoursesError = document.getElementById('no-courses-error');
+
+            const coursesPerPage = 3;
+            let currentPage = 1;
+
+            function renderCourses(filteredCourses) {
+                coursesGrid.innerHTML = '';
+                const start = (currentPage - 1) * coursesPerPage;
+                const end = start + coursesPerPage;
+                const paginatedCourses = filteredCourses.slice(start, end);
+                if (paginatedCourses.length === 0) {
+                    noCoursesError.style.display = 'block';
+                    pagination.style.display = 'none';
+                    return;
+                }
+                noCoursesError.style.display = 'none';
+                pagination.style.display = 'flex';
+                paginatedCourses.forEach(course => {
+                    const courseCard = document.createElement('div');
+                    courseCard.classList.add('course-card');
+                    courseCard.innerHTML = `
+                        <div class="course-image">
+                            <img src="${course.image}" alt="${course.title}">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">${course.category}</span>
+                            <h3 class="course-title">${course.title}</h3>
+                            <p class="course-description">${course.description}</p>
+                            <div class="course-meta">
+                                <div class="course-instructor">
+                                    <div class="instructor-avatar">${course.instructor[0]}</div>
+                                    <span>${course.instructor}</span>
+                                </div>
+                                <div class="course-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>${course.rating}</span>
+                                </div>
+                                <div class="course-youtube">
+                                    <a href="${course.youtubeLink}" target="_blank">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    courseCard.addEventListener('click', () => {
+                        window.location.href = `course-details.html?id=${course.id}`;
+                    });
+                    coursesGrid.appendChild(courseCard);
+                });
+                renderPagination(filteredCourses.length);
+            }
+
+            function renderPagination(totalCourses) {
+                pagination.innerHTML = '';
+                const totalPages = Math.ceil(totalCourses / coursesPerPage);
+                const prevButton = document.createElement('button');
+                prevButton.classList.add('pagination-btn');
+                prevButton.textContent = 'Previous';
+                prevButton.disabled = currentPage === 1;
+                if (prevButton.disabled) prevButton.classList.add('disabled');
+                prevButton.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        filterAndRenderCourses();
+                    }
+                });
+                pagination.appendChild(prevButton);
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.classList.add('pagination-btn');
+                    if (i === currentPage) pageButton.classList.add('active');
+                    pageButton.textContent = i;
+                    pageButton.addEventListener('click', () => {
+                        currentPage = i;
+                        filterAndRenderCourses();
+                    });
+                    pagination.appendChild(pageButton);
+                }
+                const nextButton = document.createElement('button');
+                nextButton.classList.add('pagination-btn');
+                nextButton.textContent = 'Next';
+                nextButton.disabled = currentPage === totalPages;
+                if (nextButton.disabled) nextButton.classList.add('disabled');
+                nextButton.addEventListener('click', () => {
+                    if (currentPage < totalPages) {
+                        currentPage++;
+                        filterAndRenderCourses();
+                    }
+                });
+                pagination.appendChild(nextButton);
+            }
+
+            function filterAndRenderCourses() {
+                const searchTerm = searchInput.value.toLowerCase();
+                console.log('Searched:', searchTerm);
+                const selectedCategory = categoryFilter.value;
+                const selectedDifficulty = difficultyFilter.value;
+                let filteredCourses = courses;
+                if (searchTerm) {
+                    filteredCourses = filteredCourses.filter(course =>
+                        course.title.toLowerCase().includes(searchTerm) ||
+                        course.description.toLowerCase().includes(searchTerm)
+                    );
+                }
+                if (selectedCategory !== 'all') {
+                    filteredCourses = filteredCourses.filter(course => course.category === selectedCategory);
+                }
+                if (selectedDifficulty !== 'all') {
+                    filteredCourses = filteredCourses.filter(course => course.difficulty === selectedDifficulty);
+                }
+                renderCourses(filteredCourses);
+            }
+
+            searchInput.addEventListener('input', () => {
+                currentPage = 1;
+                filterAndRenderCourses();
+            });
+
+            categoryFilter.addEventListener('change', () => {
+                currentPage = 1;
+                filterAndRenderCourses();
+            });
+
+            difficultyFilter.addEventListener('change', () => {
+                currentPage = 1;
+                filterAndRenderCourses();
+            });
+
+            coursesLoading.classList.add('active');
+            setTimeout(() => {
+                coursesLoading.classList.remove('active');
+                filterAndRenderCourses();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+            border: 2px solid var(--dark);
+
+
+            
+font-family: 'poppins', sans-serif;
