@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link rel="apple-touch-icon" sizes="180x180" href="./sayooj logo/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./sayooj logo/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./sayooj logo/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./logo/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./logo/android-chrome-512x512.png">
     <link rel="manifest" href="/site.webmanifest">
     <style>
         * {
@@ -276,6 +276,10 @@
             animation: pulse 2s ease-in-out infinite;
             display: inline-block;
         }
+
+
+        /* animations  */
+
 
         @keyframes pulse {
             0% { transform: scale(1); }
@@ -887,6 +891,30 @@
             border-radius: 8px;
         }
 
+
+        /* responsiveness */
+        @media (max-width: 1200px) {
+        .newsletter-form {
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .newsletter-form .btn {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 10px;
+        }
+        }
+
+
+
+        
         @media (max-width: 768px) {
             .navbar {
                 flex-wrap: wrap;
@@ -1208,6 +1236,7 @@
                 font-size: clamp(11px, 2vw, 12px);
             }
         }
+        
     </style>
 </head>
 <body>
@@ -1436,7 +1465,7 @@
                         <div class="testimonial-author">
                             <div class="author-avatar">MR</div>
                             <div class="author-info">
-                                <h4>SAYOOJ ANIL</h4>
+                                <h4>ARJUN</h4>
                                 <p>Data Scientist</p>
                             </div>
                         </div>
@@ -1448,7 +1477,7 @@
                         <div class="testimonial-author">
                             <div class="author-avatar">EP</div>
                             <div class="author-info">
-                                <h4>SAYOOJ ANIL VP</h4>
+                                <h4>SINI</h4>
                                 <p>Marketing Manager</p>
                             </div>
                         </div>
@@ -1492,8 +1521,8 @@
                     <h3>LearnSphere</h3>
                     <p>Empowering learners worldwide with accessible, high-quality education.</p>
                     <div class="social-links">
-                        <a href="https://github.com/sayoojanil"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/sayoojanilvp/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/sarananil11"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/saran-anil-v-p-028521341/"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://www.google.com/?zx=1760457062786&no_sw_cr=1"><i class="fab fa-google"></i></a>
                     </div>
                 </div>
@@ -1519,7 +1548,7 @@
                 </div>
                 <div class="footer-col">
                     <h3>Stay Updated</h3>
-                    <p>Subscribe to our newsletter for the latest courses and updates.</p>
+                    <!-- <p>Subscribe to our newsletter for the latest courses and updates.</p> -->
                     <form class="newsletter-form">
                         <input type="email" placeholder="Enter your email" required>
                         <button type="submit" class="btn">Subscribe</button>

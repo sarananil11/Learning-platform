@@ -413,6 +413,31 @@
             border-radius: 0px  ;
         }
 
+        @media (max-width: 1200px) {
+        .newsletter-form {
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .newsletter-form .btn {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 10px;
+        }
+
+        /* Hide the text under 'Stay Updated' heading */
+        .newsletter p {
+            display: none;
+        }
+        }
+
+
        
 
         @media (max-width: 768px) {
@@ -644,7 +669,6 @@
                 </div>
                 <div class="footer-col">
                     <h3>Stay Updated</h3>
-                    <p>Subscribe to our newsletter for the latest courses and updates.</p>
                     <form class="newsletter-form">
                         <input type="email" placeholder="Enter your email" required>
                         <button type="submit" class="btn">Subscribe</button>

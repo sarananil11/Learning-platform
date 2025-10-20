@@ -370,6 +370,27 @@
         background-color: var(--error);
         color: white;
       }
+
+      /* Fix newsletter layout and remove extra text under heading */
+      @media (max-width: 1200px) {
+        .newsletter-form {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+
+        .newsletter-form input {
+          width: 100%;
+          max-width: 500px;
+        }
+
+        .newsletter-form .btn {
+          width: 100%;
+          max-width: 500px;
+          margin-top: 10px;
+        }
+      }
+
       @media (max-width: 768px) {
         .navbar {
           flex-wrap: wrap;
@@ -623,9 +644,6 @@
           </div>
           <div class="footer-col">
             <h3>Stay Updated</h3>
-            <p>
-              Subscribe to our newsletter for the latest courses and updates.
-            </p>
             <form class="newsletter-form">
               <input type="email" placeholder="Enter your email" required />
               <button type="submit" class="btn">Subscribe</button>
@@ -637,76 +655,99 @@
         </div>
       </div>
     </footer>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const hamburger = document.getElementById("hamburger");
-        const navLinks = document.getElementById("nav-links");
-        const contactForm = document.getElementById("contact-form");
-        const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
-        const subjectInput = document.getElementById("subject");
-        const messageInput = document.getElementById("message");
-        const toastElement = document.getElementById("formToast");
-        const toast = new bootstrap.Toast(toastElement);
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("nav-links");
+      const contactForm = document.getElementById("contact-form");
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const subjectInput = document.getElementById("subject");
+      const messageInput = document.getElementById("message");
+      const toastElement = document.getElementById("formToast");
+      const toast = new bootstrap.Toast(toastElement);
 
-        // Hamburger menu toggle
-        hamburger.addEventListener("click", () => {
-          hamburger.classList.toggle("active");
-          navLinks.classList.toggle("active");
-        });
+      // ✅ Initialize EmailJS
+      emailjs.init("RDGRvTXw___L1_gOw"); // replace with your actual EmailJS public key
 
-        // Form validation
-        contactForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-          let isValid = true;
-          let errorMessage = "";
+      // 🍔 Hamburger menu toggle
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
 
-          // Reset toast
-          toastElement.classList.remove("toast-success", "toast-error");
-          toastElement.querySelector(".toast-body").textContent = "";
+      // 📧 Form submission + EmailJS
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let isValid = true;
+        let errorMessage = "";
 
-          // Validate name
-          if (!nameInput.value.trim()) {
-            errorMessage = "Please enter your name";
-            isValid = false;
-          }
+        // Reset toast
+        toastElement.classList.remove("toast-success", "toast-error");
+        toastElement.querySelector(".toast-body").textContent = "";
 
-          // Validate email
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (
-            !emailInput.value.trim() ||
-            !emailRegex.test(emailInput.value.trim())
-          ) {
-            errorMessage = errorMessage || "Please enter a valid email address";
-            isValid = false;
-          }
+        // ✅ Validation checks
+        if (!nameInput.value.trim()) {
+          errorMessage = "Please enter your name";
+          isValid = false;
+        }
 
-          // Validate subject
-          if (!subjectInput.value.trim()) {
-            errorMessage = errorMessage || "Please enter a subject";
-            isValid = false;
-          }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (
+          !emailInput.value.trim() ||
+          !emailRegex.test(emailInput.value.trim())
+        ) {
+          errorMessage = errorMessage || "Please enter a valid email address";
+          isValid = false;
+        }
 
-          // Validate message
-          if (!messageInput.value.trim()) {
-            errorMessage = errorMessage || "Please enter your message";
-            isValid = false;
-          }
+        if (!subjectInput.value.trim()) {
+          errorMessage = errorMessage || "Please enter a subject";
+          isValid = false;
+        }
 
-          // Show toast
-          if (isValid) {
+        if (!messageInput.value.trim()) {
+          errorMessage = errorMessage || "Please enter your message";
+          isValid = false;
+        }
+
+        // ❌ Show error toast if invalid
+        if (!isValid) {
+          toastElement.classList.add("toast-error");
+          toastElement.querySelector(".toast-body").textContent = errorMessage;
+          toast.show();
+          return;
+        }
+
+        // ✅ Build data to send
+        const formData = {
+          name: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          subject: subjectInput.value.trim(),
+          message: messageInput.value.trim(),
+        };
+
+        // 📨 Send using EmailJS
+        emailjs
+          .send("service_bt6rwen", "template_hmjn5yc", formData)
+          .then(() => {
             toastElement.classList.add("toast-success");
             toastElement.querySelector(".toast-body").textContent =
               "Message sent successfully!";
             contactForm.reset();
-          } else {
+            toast.show();
+          })
+          .catch((error) => {
+            console.error("EmailJS Error:", error);
             toastElement.classList.add("toast-error");
             toastElement.querySelector(".toast-body").textContent =
-              errorMessage;
-          }
-          toast.show();
-        });
+              "Failed to send message. Please try again.";
+            toast.show();
+          });
       });
-    </script>
+    });
+  </script>
+
   </body>
 </html>
