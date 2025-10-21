@@ -57,7 +57,7 @@
             display: inline-block;
             padding: 10px 24px; 
             background: var(--primary);
-            color: white;
+            color: rgb(217, 255, 0);
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -168,14 +168,7 @@
             transform: rotate(-90deg);
         }
 
-        .auth-buttons .btn {
-            margin-left: 8px;
-            border-radius: 0px;
-            padding: 8px 16px;
-            font-size: clamp(12px, 2.2vw, 14px);
-            min-height: 40px;
-        }
-
+        
         .hero {
             min-height: 100vh;
             display: flex;
@@ -218,6 +211,7 @@
             font-size: clamp(14px, 2.5vw, 16px);
             margin-bottom: 20px;
             color: var(--text);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
         .hero-buttons .btn {
@@ -266,17 +260,7 @@
             100% { transform: translateY(0px); }
         }
 
-        .hero-cta-banner {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: var(--success);
-            color: white;
-            border-radius: 50px;
-            font-size: clamp(12px, 2.5vw, 14px);
-            animation: pulse 2s ease-in-out infinite;
-            display: inline-block;
-        }
-
+        
 
         /* animations  */
 
@@ -303,11 +287,13 @@
             font-size: clamp(24px, 4vw, 30px);
             margin-bottom: 12px;
             color: var(--text);
+            /* font-family: ; */
         }
 
         .section-header p {
             font-size: clamp(14px, 2.5vw, 16px);
             color: var(--text);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
         .featured-courses {
@@ -359,7 +345,7 @@
 
         .course-category {
             display: inline-block;
-            background: rgba(26, 115, 232, 0.1);
+            background: rgba(26, 115, 232, 0.164);
             color: var(--primary);
             padding: 4px 10px;
             border-radius: 50px;
@@ -381,10 +367,7 @@
             font-size: clamp(12px, 2.5vw, 14px);
         }
 
-        .course-progress {
-            margin-top: 10px;
-        }
-
+     
         .course-progress span {
             font-size: clamp(12px, 2vw, 13px);
             color: var(--text);
@@ -392,18 +375,9 @@
             margin-bottom: 5px;
         }
 
-        .progress-bar {
-            background: var(--border);
-            height: 6px;
-            border-radius: 3px;
-            overflow: hidden;
-        }
+     
 
-        .progress-fill {
-            background: var(--success);
-            height: 100%;
-            transition: width 0.5s ease;
-        }
+       
 
         .course-meta {
             display: flex;
@@ -417,21 +391,12 @@
         .course-instructor {
             display: flex;
             align-items: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 12px;
+            color: #5a5a5a;
         }
 
-        .instructor-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 12px;
-            margin-right: 6px;
-        }
+       
 
         .course-rating {
             display: flex;
@@ -451,59 +416,16 @@
             background: var(--light);
         }
 
-        .learning-paths-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+        
 
-        .path-card {
-            background: var(--dark);
-            border-radius: 5px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-        }
+        
 
-        .path-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(26, 115, 232, 0.2);
-        }
-
-        .path-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 24px;
-        }
-
-        .path-card h3 {
-            font-size: clamp(16px, 3vw, 18px);
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-
-        .path-card p {
-            font-size: clamp(12px, 2.5vw, 14px);
-            color: var(--text);
-            margin-bottom: 15px;
-        }
-
-        .path-card .btn {
-            padding: 8px 20px;
-            font-size: clamp(12px, 2.5vw, 14px);
-        }
+       
 
         .why-choose-us {
             padding: clamp(30px, 8vw, 60px) 0;
             background: var(--dark);
+            border-radius: 2px;
         }
 
         .why-choose-grid {
@@ -544,12 +466,14 @@
             font-size: clamp(16px, 3vw, 18px);
             margin-bottom: 10px;
             color: var(--text);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
         .why-choose-card p {
             font-size: clamp(12px, 2.5vw, 14px);
             color: black;
-            font-family:Verdana, Geneva, Tahoma, sans-serif
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            
         }
 
         .stats {
@@ -588,91 +512,11 @@
             color: var(--text);
         }
 
-        .testimonials {
-            padding: clamp(10px, 8vw, 60px) 0;
-            background: var(--light);
-            position: relative;
-        }
+        
 
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+      
+       
 
-        .testimonial-card {
-            background: var(--dark);
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: var(--card-shadow);
-            position: relative;
-        }
-
-        .testimonial-content {
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 2;
-            color: var(--text);
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-
-        .author-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 10px;
-            background: black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .author-info p {
-            color: var(--primary);
-            font-size: clamp(12px, 2vw, 13px);
-        }
-
-        .cta {
-            padding: clamp(40px, 8vw, 60px) 0;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: clamp(24px, 4vw, 30px);
-            margin-bottom: 12px;
-            color: white;
-        }
-
-        .cta p {
-            max-width: 500px;
-            margin: 0 auto 20px;
-            font-size: clamp(14px, 2.5vw, 16px);
-            opacity: 0.9;
-            color: white;
-        }
-
-        .cta .btn {
-            background: var(--dark);
-            color: var(--primary);
-            padding: 10px 30px;
-            font-size: clamp(14px, 2.5vw, 16px);
-            min-height: 44px;
-            border-radius: 0px;
-        }
-
-        .cta .btn:hover {
-            transform: scale(1.05);
-        }
 
         footer {
             background: var(--primary);
@@ -781,31 +625,11 @@
             padding-top: 20px;
             border-top: 1px solid var(--border);
             font-size: clamp(12px, 2vw, 13px);
+            color: #f5f7fa;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
         }
 
-        .support-fab {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 1000;
-        }
-
-        .support-fab:hover {
-            background: var(--secondary);
-            transform: scale(1.1);
-        }
+       
 
         .search-box {
             flex: 1;
@@ -824,72 +648,11 @@
             min-height: 44px;
         }
 
-        .search-box i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text);
-        }
+       
+       
 
-        .filter-options {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .filter-select {
-            padding: 8px 12px;
-            border: 2px solid var(--border);
-            border-radius: 50px;
-            font-size: clamp(12px, 2.5vw, 14px);
-            background: var(--light);
-            color: var(--text);
-            cursor: pointer;
-            min-width: 100px;
-            min-height: 40px;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333333'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px top 50%;
-            background-size: 16px;
-        }
-
-        .filter-select:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
-        }
-
-        .filter-select:hover {
-            border-color: var(--primary);
-        }
-
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .error-message {
-            color: #ff4d4f;
-            font-size: clamp(12px, 2vw, 13px);
-            margin-top: 6px;
-            text-align: center;
-            display: none;
-            background: rgba(255, 77, 79, 0.1);
-            padding: 12px;
-            border-radius: 8px;
-        }
+       
+        
 
 
         /* responsiveness */
@@ -953,16 +716,9 @@
                 display: block;
             }
 
-            .auth-buttons {
-                margin-top: 8px;
-                gap: 6px;
-            }
+          
 
-            .auth-buttons .btn {
-                padding: 6px 10px;
-                font-size: 10px;
-                min-height: 31px;
-            }
+           
 
             .hero-content {
                 padding-top: 0px;
@@ -1034,24 +790,12 @@
                 font-size: 20px;
             }
 
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .stat-card {
-                padding: 15px;
-            }
+           
 
             .featured-courses-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
                 padding: 0 10px;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-                border-radius: 5px;
             }
 
             .footer-grid {
@@ -1071,35 +815,9 @@
                 min-height: 36px;
             }
 
-            .support-fab {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
+          
 
-            .modal-content {
-                padding: 15px;
-                max-width: 90%;
-                border-radius: 2px;
-            }
-
-            .modal-header h2 {
-                font-size: 18px;
-            }
-
-            .modal-header p {
-                font-size: 12px;
-            }
-
-            .form-group input {
-                padding: 8px;
-                font-size: 12px;
-                min-height: 40px;
-            }
-
-            .form-group label {
-                font-size: 12px;
-            }
+         
 
             .btn {
                 padding: 8px 16px;
@@ -1108,32 +826,13 @@
                 border-radius: 5px;
             }
 
-            .modal-footer p {
-                font-size: 12px;
-            }
+          
 
             .courses-grid {
                 grid-template-columns: 1fr;
             }
 
-            .filter-bar {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .search-box {
-                max-width: 100%;
-                margin-bottom: 10px;
-            }
-
-            .filter-options {
-                justify-content: space-between;
-            }
-
-            .filter-select {
-                flex: 1;
-                min-width: 0;
-            }
+          
         }
 
         @media (max-width: 480px) {
@@ -1178,27 +877,6 @@
 
             .courses-header p {
                 font-size: 12px;
-            }
-
-            .modal-content {
-                padding: 12px;
-            }
-
-            .modal-header h2 {
-                font-size: 16px;
-            }
-
-            .close-btn {
-                font-size: 18px;
-            }
-
-            .form-group input {
-                font-size: 11px;
-                min-height: 36px;
-            }
-
-            .form-group label {
-                font-size: 11px;
             }
 
             .btn {
@@ -1258,16 +936,7 @@
                     <li><a href="contact-us.html">Contact</a></li>
                 </ul>
                 <div class="auth-buttons" id="auth-buttons">
-                    <a href="#" class="btn btn-outline" id="login-btn">Login</a>
-                    <div class="user-profile" id="user-profile" style="display: none;">
-                        <div class="user-profile-icon" id="user-profile-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="user-name-dropdown" id="user-name-dropdown">
-                            <span id="user-name"></span>
-                        </div>
-                        <a href="#" class="btn btn-outline" id="logout-btn">Logout</a>
-                    </div>
+                    
                 </div>
             </nav>
         </div>
@@ -1319,13 +988,6 @@
                     </div>
                     <div class="why-choose-card">
                         <div class="why-choose-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3>Flexible Learning</h3>
-                        <p>Learn at your own pace with 24/7 access to course materials on any device.</p>
-                    </div>
-                    <div class="why-choose-card">
-                        <div class="why-choose-icon">
                             <i class="fas fa-user-graduate"></i>
                         </div>
                         <h3>Expert Instructors</h3>
@@ -1359,8 +1021,7 @@
                             </div>
                             <div class="course-meta">
                                 <div class="course-instructor">
-                                    <div class="instructor-avatar">SJ</div>
-                                    <span>Sayooj Anil VP</span>
+                                    <span><i class="fa-solid fa-user-tie"></i> Nihala AT</span>
                                 </div>
                                 <div class="course-rating">
                                     <i class="fas fa-star"></i>
@@ -1382,6 +1043,7 @@
                             <h3 class="course-title">Python for Data Science</h3>
                             <p class="course-description">Learn Python programming for data analysis and visualization.</p>
                             <p class="course-description"><strong> ₹ 2999</strong></p>
+                            
                             <div class="course-progress">
                                 <span>Duration: 6 weeks</span>
                                 <div class="progress-bar">
@@ -1390,8 +1052,7 @@
                             </div>
                             <div class="course-meta">
                                 <div class="course-instructor">
-                                    <div class="instructor-avatar">SJ</div>
-                                    <span>Sayooj Anil</span>
+                                    <span><i class="fa-solid fa-user-tie"></i> Aswathi K</span>
                                 </div>
                                 <div class="course-rating">
                                     <i class="fas fa-star"></i>
@@ -1421,8 +1082,7 @@
                             </div>
                             <div class="course-meta">
                                 <div class="course-instructor">
-                                    <div class="instructor-avatar">SJ</div>
-                                    <span>Sayooj Anil</span>
+                                    <span><i class="fa-solid fa-user-tie"></i> Janeesh </span>
                                 </div>
                                 <div class="course-rating">
                                     <i class="fas fa-star"></i>
@@ -1438,54 +1098,7 @@
                 </div>
             </div>
         </section>
-
-        <section class="testimonials">
-            <div class="container">
-                <div class="section-header">
-                    <h2>What Our Students Say</h2>
-                    <p>Join thousands of satisfied learners who have transformed their careers with our platform.</p>
-                </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>This platform completely changed my career trajectory. The courses are well-structured and the instructors are incredibly knowledgeable.</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar"><img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1331" alt="Sayooj Profile Image" class="src"></div>
-                            <div class="author-info">
-                                <h4>SAYOOJ</h4>
-                                <p>Software Developer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>I've tried many learning platforms, but LearnSphere stands out with its practical approach and supportive community.</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">MR</div>
-                            <div class="author-info">
-                                <h4>ARJUN</h4>
-                                <p>Data Scientist</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>The mobile app allows me to learn during my commute. I've completed three courses in both two months!</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">EP</div>
-                            <div class="author-info">
-                                <h4>SINI</h4>
-                                <p>Marketing Manager</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+               
         <section class="stats">
             <div class="container">
                 <div class="section-header">
@@ -1533,8 +1146,7 @@
                         <li><a href="#">About Us</a></li>
                         <li><a href="contact-us.html">Contact Us</a></li>
                         <li><a href="course.html" class="nav-link">Courses</a></li>
-                        <!-- <li><a href="#">Blog</a></li>
-                        <li><a href="#">FAQ</a></li> -->
+                       
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1548,8 +1160,7 @@
                 </div>
                 <div class="footer-col">
                     <h3>Stay Updated</h3>
-                    <!-- <p>Subscribe to our newsletter for the latest courses and updates.</p> -->
-                    <form class="newsletter-form">
+                                        <form class="newsletter-form">
                         <input type="email" placeholder="Enter your email" required>
                         <button type="submit" class="btn">Subscribe</button>
                     </form>
@@ -1560,11 +1171,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- <div class="support-fab">
-        <i class="fa-solid fa-envelope"></i>
-    </div> -->
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.getElementById('hamburger');
@@ -1599,16 +1205,7 @@
                     }
                 });
             });
-
-            // Keyboard accessibility for hamburger
-            hamburger.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    hamburger.classList.toggle('active');
-                    navLinks.classList.toggle('active');
-                }   
-            });
-        });
+ });
     </script>
 </body>
 </html> 

@@ -6,9 +6,9 @@
     <title>LearnSphere - Course Details</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="./sayooj logo/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./sayooj logo/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./sayooj logo/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./logo/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./logo/android-chrome-512x512.png">
     <style>
         * {
             margin: 0;
@@ -80,13 +80,13 @@
             align-items: center;
         }
         .logo {
-            font-size: 28px;
+            font-size: clamp(20px, 5vw, 24px);
             font-weight: 800;
             color: var(--primary);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            margin-left: 10px;
         }
         .logo i {
             color: var(--accent);
@@ -179,42 +179,8 @@
             color: #4b5563;
             line-height: 1.8;
         }
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 16px 0;
-        }
-        .enroll-btn {
-            background: var(--primary);
-            color: white;
-            border-radius: 0px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            box-shadow: 0 4px 15px rgba(91, 124, 255, 0.3);
-        }
-        .enroll-btn:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(91, 124, 255, 0.4);
-        }
-        .progress-fill {
-            height: 100%;
-            background: var(--success);
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        .enroll-btn {
-            align-self: flex-start;
-            padding: 14px 36px;
-            font-size: 16px;
-        }
+       
+      
         .sidebar {
             background: #f1f5f9;
             padding: 24px;
@@ -232,29 +198,12 @@
             flex-direction: column;
             gap: 8px;
             font-size: 14px;
-            color: #4b5563;
+            color: #2e2e2e;
         }
         .sidebar-item i {
             color: var(--primary);
         }
-        .loading-message {
-            color: #4b5563;
-            font-size: 16px;
-            text-align: center;
-            margin: 24px 0;
-            display: none;
-            font-weight: 400;
-        }
-        .loading-message.active {
-            display: block;
-        }
-        .error-message {
-            color: #ef4444;
-            font-size: 16px;
-            text-align: center;
-            margin: 24px 0;
-            font-weight: 500;
-        }
+       
         @media (max-width: 1024px) {
             .course-details-content {
                 grid-template-columns: 1fr;
@@ -329,10 +278,7 @@
             .meta-item {
                 font-size: 12px;
             }
-            .enroll-btn {
-                padding: 10px 24px;
-                font-size: 14px;
-            }
+          
         }
     </style>
 </head>
@@ -361,8 +307,7 @@
             <div class="course-details-header">
                 <h1>Course Details</h1>
             </div>
-            <div class="loading-message active" id="course-loading">Loading course details...</div>
-            <div class="error-message" id="course-error" style="display: none;">Failed to load course details. Please try again later.</div>
+                <div class="loading-message active" id="course-loading">Loading course details...</div>
             <div class="course-details-content" id="course-details-content" style="display: none;">
                 <div class="course-main">
                     <div class="course-video">
@@ -384,7 +329,6 @@
                         </div>
                         <p class="course-description" id="course-description"></p>
                         <p class="course-details" id="course-details"></p>
-                        <button class="enroll-btn">Enroll Now</button>
                     </div>
                 </div>
                 <div class="sidebar">
@@ -418,7 +362,7 @@
                     category: 'Coding',
                     difficulty: 'Beginner',
                     description: 'Learn the basics of Python programming, including syntax, variables, and functions.',
-                    instructor: 'Jane Doe',
+                    instructor: 'Aswathi K',
                     rating: 4.5,
                     youtubeLink: 'https://www.youtube.com/embed/K5KVEU3aaeQ', // Example YouTube embed link 
                     duration: '4 weeks',
@@ -434,7 +378,7 @@
                     category: 'Web Development',
                     difficulty: 'Advanced',
                     description: 'Master modern web technologies like React, Node.js, and advanced CSS.',
-                    instructor: 'John Smith',
+                    instructor: 'Nihala AT',
                     rating: 4.8,
                     youtubeLink: 'https://www.youtube.com/embed/3JluqTojuME', // Example YouTube embed link
                     duration: '6 weeks',
@@ -450,7 +394,7 @@
                     category: 'Data Science',
                     difficulty: 'Intermediate',
                     description: 'Explore data analysis and visualization using R programming language.',
-                    instructor: 'Emily Johnson',
+                    instructor: 'Chriz Annet',
                     rating: 4.3,
                     youtubeLink: 'https://www.youtube.com/embed/umI0DpJEqPE', // Example YouTube embed link
                     duration: '5 weeks',
@@ -466,7 +410,7 @@
                     category: 'Business',
                     difficulty: 'Beginner',
                     description: 'Understand key business analytics concepts and tools to drive decisions.',
-                    instructor: 'Michael Brown',
+                    instructor: 'Abhilash Nair',
                     rating: 4.6,
                     youtubeLink: 'https://www.youtube.com/embed/psusaPKLg0', // Example YouTube embed link
                     duration: '3 weeks',
@@ -476,107 +420,12 @@
                     details: 'Get started with business analytics, covering key concepts, tools, and techniques to make data-driven decisions in a business environment.',
                     progress: 0
                 },
-                {
-                    id: 5,
-                    title: 'UI/UX Design Principles',
-                    category: 'Design',
-                    difficulty: 'Intermediate',
-                    description: 'Learn to create user-friendly interfaces and engaging user experiences.',
-                    instructor: 'Sarah Davis',
-                    rating: 4.7,
-                    youtubeLink: 'https://www.youtube.com/embed/ODpB9-MCa5s', // Example YouTube embed link
-                    duration: '4 weeks',
-                    lessons: 14,
-                    price: '$59.99',
-                    level: 'Intermediate',
-                    details: 'Master the principles of UI/UX design, including wireframing, prototyping, and user testing to create intuitive and engaging interfaces.',
-                    progress: 0
-                },
-                {
-                    id: 6,
-                    title: 'Digital Marketing Strategies',
-                    category: 'Marketing',
-                    difficulty: 'Intermediate',
-                    description: 'Master SEO, social media, and content marketing strategies.',
-                    instructor: 'David Wilson',
-                    rating: 4.4,
-                    youtubeLink: 'https://www.youtube.com/embed/bixR-KIJKYM', // Example YouTube embed link
-                    duration: '5 weeks',
-                    lessons: 16,
-                    price: '$64.99',
-                    level: 'Intermediate',
-                    details: 'Learn advanced digital marketing techniques, including SEO, social media marketing, and content strategies to grow your online presence.',
-                    progress: 0
-                },
-                    // {
-                    //     id: 7,
-                    //     title: 'Mobile App Development with Flutter',
-                    //     category: 'Mobile Development',
-                    //     difficulty: 'Advanced',
-                    //     description: 'Build cross-platform mobile apps using Flutter and Dart.',
-                    //     instructor: 'Lisa Taylor',
-                    //     rating: 4.9,
-                    //     youtubeLink: 'https://www.youtube.com/embed/IY2y6-0R0gM', // Example YouTube embed link
-                    //     duration: '6 weeks',
-                    //     lessons: 20,
-                    //     price: '$99.99',
-                    //     level: 'Advanced',
-                    //     details: 'Develop high-performance, cross-platform mobile applications using Flutter and Dart, with a focus on building responsive and scalable apps.',
-                    //     progress: 0
-                    // },
-                    // {
-                    //     id: 8,
-                    //     title: 'Productivity Hacks for Professionals',
-                    //     category: 'Productivity',
-                    //     difficulty: 'Beginner',
-                    //     description: 'Boost your efficiency with time management and organizational skills.',
-                    //     instructor: 'James Lee',
-                    //     rating: 4.2,
-                    //     youtubeLink: 'https://www.youtube.com/embed/0zM3nApSvMg', // Example YouTube embed link
-                    //     duration: '2 weeks',
-                    //     lessons: 8,
-                    //     price: '$29.99',
-                    //     level: 'Beginner',
-                    //     details: 'Discover practical productivity techniques, including time management, task prioritization, and organizational strategies for professionals.',
-                    //     progress: 0
-                    // },
-                // {
-                //     id: 9,
-                //     title: 'JavaScript for Beginners',
-                //     category: 'Coding',
-                //     difficulty: 'Beginner',
-                //     description: 'Get started with JavaScript and build interactive web applications.',
-                //     instructor: 'Anna White',
-                //     rating: 4.5,
-                //     youtubeLink: 'https://www.youtube.com/embed/PkZNo7MFNFg', // Example YouTube embed link
-                //     duration: '4 weeks',
-                //     lessons: 12,
-                //     price: '$49.99',
-                //     level: 'Beginner',
-                //     details: 'Learn the basics of JavaScript, including variables, functions, and DOM manipulation to create interactive web applications.',
-                //     progress: 0
-                // },
-                // {
-                //     id: 10,
-                //     title: 'Machine Learning Basics',
-                //     category: 'Data Science',
-                //     difficulty: 'Intermediate',
-                //     description: 'Learn the fundamentals of machine learning and predictive modeling.',
-                //     instructor: 'Robert Green',
-                //     rating: 4.6,
-                //     youtubeLink: 'https://www.youtube.com/embed/GwIo3gDZCVQ', // Example YouTube embed link
-                //     duration: '5 weeks',
-                //     lessons: 15,
-                //     price: '$74.99',
-                //     level: 'Intermediate',
-                //     details: 'Explore the fundamentals of machine learning, including supervised and unsupervised learning, with practical applications in predictive modeling.',
-                //     progress: 0
-                // }
+              
+                  
             ];
 
             // DOM elements
             const courseLoading = document.getElementById('course-loading');
-            const courseError = document.getElementById('course-error');
             const courseDetailsContent = document.getElementById('course-details-content');
             const courseVideo = document.getElementById('course-video');
             const courseTitle = document.getElementById('course-title');
@@ -589,7 +438,6 @@
             const coursePrice = document.getElementById('course-price');
             const courseDescription = document.getElementById('course-description');
             const courseDetails = document.getElementById('course-details');
-            const courseProgress = document.getElementById('course-progress');
 
             // Get course ID from URL
             const urlParams = new URLSearchParams(window.location.search);

@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="./sayooj logo/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./sayooj logo/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./sayooj logo/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./Saran logo/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./Saran logo/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./Saran logo/android-chrome-512x512.png">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         * {
@@ -69,7 +69,7 @@
             min-height: 44px;
         }
 
-        .btn:hover {
+        /* .btn:hover {
             background: var(--secondary);
             transform: translateY(-3px);
             box-shadow: 0 7px 20px rgba(26, 115, 232, 0.4);
@@ -85,7 +85,7 @@
         .btn-outline:hover {
             background: var(--primary);
             color: white;
-        }
+        } */
 
         header {
             padding: 15px 0;
@@ -404,21 +404,11 @@
         .course-instructor {
             display: flex;
             align-items: center;
+            font-size: small;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
-        .instructor-avatar {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 12px;
-            margin-right: 8px;
-        }
+       
 
         .course-rating {
             display: flex;
@@ -664,6 +654,7 @@
             padding-top: 20px;
             border-top: 1px solid var(--border);
             font-size: clamp(12px, 2vw, 13px);
+            color: white;
         }
 
         .modal-footer p {
@@ -1008,17 +999,7 @@
                 font-size: 12px;
             }
 
-            .modal-content {
-                padding: 12px;
-            }
-
-            .modal-header h2 {
-                font-size: 18px;
-            }
-
-            .close-btn {
-                font-size: 20px;
-            }
+          
 
             .pagination-btn {
                 padding: 5px 10px;
@@ -1046,17 +1027,8 @@
                     <li><a href="contact-us.html" class="nav-link">Contact</a></li>
                 </ul>
                 <div class="auth-buttons" id="auth-buttons">
-                    <a href="#" class="btn btn-outline" id="login-btn">Login</a>
-                    <div class="user-profile" id="user-profile" style="display: none;">
-                        <div class="user-profile-icon" id="user-profile-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="user-name-dropdown" id="user-name-dropdown">
-                            <span id="user-name"></span>
-                        </div>
-                        <a href="#" class="btn btn-outline" id="logout-btn">Logout</a>
-                    </div>
-                </div>
+                    <!-- <a href="#" class="btn btn-outline" id="login-btn">Login</a> -->
+                   
             </nav>
         </div>
     </header>
@@ -1104,71 +1076,8 @@
         </div>
     </section>
 
-    <div id="signup-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <div class="modal-header">
-                <h2>Create Account</h2>
-                <p>Join our learning community today</p>
-            </div>
-            <form id="signup-form">
-                <div class="form-group">
-                    <label for="signup-name">Full Name</label>
-                    <input type="text" id="signup-name" placeholder="Enter your full name" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-email">Email Address</label>
-                    <input type="email" id="signup-email" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-password">Password</label>
-                    <input type="password" id="signup-password" placeholder="Create a password" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-confirm">Confirm Password</label>
-                    <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
-                </div>
-                <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 16px;" id="signup-submit">Sign Up</button>
-                <p class="loading-message" id="signup-loading">Processing signup...</p>
-                <p class="error-message" id="signup-error"></p>
-            </form>
-            <div class="modal-footer">
-                <p>Already have an account? <a href="#" id="show-login">Login</a></p>
-            </div>
-        </div>
-    </div>
-    <div id="login-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <div class="modal-header">
-                <h2>Welcome Back</h2>
-                <p>Sign in to continue your learning journey</p>
-            </div>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="login-email">Email Address</label>
-                    <input type="email" id="login-email" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="login-password">Password</label>
-                    <input type="password" id="login-password" placeholder="Enter your password" required>
-                </div>
-                <div class="form-options">
-                    <div class="remember-me">
-                        <input type="checkbox" id="remember">
-                        <label for="remember">Remember me</label>
-                    </div>
-                    <a href="#" class="forgot-password">Forgot password?</a>
-                </div>
-                <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 16px;" id="login-submit">Login</button>
-                <p class="loading-message" id="login-loading">Processing login...</p>
-                <p class="error-message" id="login-error"></p>
-            </form>
-            <div class="modal-footer">
-                <p>Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
-            </div>
-        </div>
-    </div>
+    
+   
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1176,8 +1085,8 @@
                     <h3>LearnSphere</h3>
                     <p>Empowering learners worldwide with accessible, high-quality education.</p>
                     <div class="social-links">
-                        <a href="https://github.com/sayoojanil"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/sayoojanilvp/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/sarananil11"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/Sarananilvp/"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://www.google.com/?zx=1760457062786&no_sw_cr=1"><i class="fab fa-google"></i></a>
                     </div>
                 </div>
@@ -1234,7 +1143,7 @@
                     category: 'Coding',
                     difficulty: 'Beginner',
                     description: 'Learn the basics of Python programming, including syntax, variables, and functions.',
-                    instructor: 'Jane Doe',
+                    instructor: '',
                     rating: 4.5,
                     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYZqZkpMyiN2uSuT7GAf6JSkJ44YsZqoQHdw&s',
                     duration: '4 weeks',
@@ -1250,7 +1159,7 @@
                     category: 'Web Development',
                     difficulty: 'Advanced',
                     description: 'Master modern web technologies like React, Node.js, and advanced CSS.',
-                    instructor: 'John Smith',
+                    instructor: '',
                     rating: 4.8,
                     image: 'https://miro.medium.com/0*M4bxiCIjcTK-2Xr6.jpeg',
                     duration: '6 weeks',
@@ -1266,7 +1175,7 @@
                     category: 'Data Science',
                     difficulty: 'Intermediate',
                     description: 'Explore data analysis and visualization using R programming language.',
-                    instructor: 'Emily Johnson',
+                    instructor: '',
                     rating: 4.3,
                     image: 'https://cdn.prod.website-files.com/63ccf2f0ea97be12ead278ed/644a18b637053fa3709c5ba2_what-is-data-science.jpg',
                     duration: '5 weeks',
@@ -1282,7 +1191,7 @@
                     category: 'Business',
                     difficulty: 'Beginner',
                     description: 'Understand key business analytics concepts and tools to drive decisions.',
-                    instructor: 'Michael Brown',
+                    instructor: '',
                     rating: 4.6,
                     image: 'https://images.ctfassets.net/pdf29us7flmy/5iQM8DSaB5iF4Gd9lcJiSy/340379739c3bf1758ba1b3635716660a/business-analyst-skills.png',
                     duration: '3 weeks',
@@ -1292,70 +1201,7 @@
                     details: 'Get started with business analytics, covering key concepts, tools, and techniques to make data-driven decisions in a business environment.',
                     youtubeLink: 'https://www.youtube.com/watch?v=2XL_xP-0CSQ'
                 },
-                {
-                    id: 5,
-                    title: 'UI/UX Design Principles',
-                    category: 'Design',
-                    difficulty: 'Intermediate',
-                    description: 'Learn to create user-friendly interfaces and engaging user experiences.',
-                    instructor: 'Sarah Davis',
-                    rating: 4.7,
-                    image: 'https://img.freepik.com/free-vector/gradient-style-ui-ux-background_52683-69621.jpg?semt=ais_hybrid&w=740&q=80',
-                    duration: '4 weeks',
-                    lessons: 14,
-                    price: '$59.99',
-                    level: 'Intermediate',
-                    details: 'Master the principles of UI/UX design, including wireframing, prototyping, and user testing to create intuitive and engaging interfaces.',
-                    youtubeLink: 'https://www.youtube.com/watch?v=0p9rW6H2b2U'
-                },
-                {
-                    id: 6,
-                    title: 'Digital Marketing Strategies',
-                    category: 'Marketing',
-                    difficulty: 'Intermediate',
-                    description: 'Master SEO, social media, and content marketing strategies.',
-                    instructor: 'David Wilson',
-                    rating: 4.4,
-                    image: 'https://www.springboard.com/blog/wp-content/uploads/2022/06/what-is-digital-marketing.png',
-                    duration: '5 weeks',
-                    lessons: 16,
-                    price: '$64.99',
-                    level: 'Intermediate',
-                    details: 'Learn advanced digital marketing techniques, including SEO, social media marketing, and content strategies to grow your online presence.',
-                    youtubeLink: 'https://www.youtube.com/watch?v=OJ9vC1hk84E'
-                },
-                // {
-                //     id: 7,
-                //     title: 'Mobile App Development with Flutter',
-                //     category: 'Mobile Development',
-                //     difficulty: 'Advanced',
-                //     description: 'Build cross-platform mobile apps using Flutter and Dart.',
-                //     instructor: 'Lisa Taylor',
-                //     rating: 4.9,
-                //     image: 'https://cdn.sanity.io/images/0mnqm898/production/52566e987046623a25e2f40a11fa99bbd9f4d4d2-2240x1260.png',
-                //     duration: '6 weeks',
-                //     lessons: 20,
-                //     price: '$99.99',
-                //     level: 'Advanced',
-                //     details: 'Develop high-performance, cross-platform mobile applications using Flutter and Dart, with a focus on building responsive and scalable apps.',
-                //     youtubeLink: 'https://www.youtube.com/watch?v=1ukSR1GRtMU'
-                // },
-                // {
-                //     id: 8,
-                //     title: 'Productivity Hacks for Professionals',
-                //     category: 'Productivity',
-                //     difficulty: 'Beginner',
-                //     description: 'Boost your efficiency with time management and organizational skills.',
-                //     instructor: 'James Lee',
-                //     rating: 4.2,
-                //     image: 'https://miro.medium.com/1*f3FL3QCQ5CfKnW4NaepOIA.jpeg',
-                //     duration: '2 weeks',
-                //     lessons: 8,
-                //     price: '$29.99',
-                //     level: 'Beginner',
-                //     details: 'Discover practical productivity techniques, including time management, task prioritization, and organizational strategies for professionals.',
-                //     youtubeLink: 'https://www.youtube.com/watch?v=fL8z_oIkp0k'
-                // }
+              
             ];
 
             const coursesGrid = document.getElementById('courses-grid');
@@ -1392,20 +1238,16 @@
                             <span class="course-category">${course.category}</span>
                             <h3 class="course-title">${course.title}</h3>
                             <p class="course-description">${course.description}</p>
+                            <span>${course.price}</span>
                             <div class="course-meta">
                                 <div class="course-instructor">
-                                    <div class="instructor-avatar">${course.instructor[0]}</div>
-                                    <span>${course.instructor}</span>
+                                     <span><span><i class="fa-solid fa-user-tie"></i>Saran Anil</span>${course.instructor}</span>
                                 </div>
                                 <div class="course-rating">
                                     <i class="fas fa-star"></i>
                                     <span>${course.rating}</span>
                                 </div>
-                                <div class="course-youtube">
-                                    <a href="${course.youtubeLink}" target="_blank">
-                                        <i class="fab fa-youtube"></i>
-                                    </a>
-                                </div>
+                               
                             </div>
                         </div>
                     `;
@@ -1493,11 +1335,13 @@
                 filterAndRenderCourses();
             });
 
+
+            // loading time
             coursesLoading.classList.add('active');
             setTimeout(() => {
                 coursesLoading.classList.remove('active');
                 filterAndRenderCourses();
-            }, 1000);
+            }, 1000);  // 1 second loading time 
         });
     </script>
 </body>
