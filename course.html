@@ -115,10 +115,10 @@
             margin-left: 10px;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
+            .nav-links {
+                display: flex;
+                list-style: none;
+            }
 
         .nav-links li {
             margin: 0 12px;
@@ -1069,7 +1069,6 @@
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
-            <div class="error-message" id="fetch-error" style="display: none;">Failed to fetch courses. Please try again later.</div>
             <div class="error-message" id="no-courses-error" style="display: none;">No courses found for the selected category or filters.</div>
             <div class="courses-grid" id="courses-grid"></div>
             <div class="pagination" id="pagination"></div>
@@ -1214,7 +1213,7 @@
 
             const coursesPerPage = 3;
             let currentPage = 1;
-
+                           // /pagination and rendering 
             function renderCourses(filteredCourses) {
                 coursesGrid.innerHTML = '';
                 const start = (currentPage - 1) * coursesPerPage;

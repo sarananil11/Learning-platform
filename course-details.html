@@ -91,11 +91,11 @@
         .logo i {
             color: var(--accent);
         }
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 24px;
-        }
+            .nav-links {
+                display: flex;
+                list-style: none;
+                gap: 24px;
+            }
         .nav-links li a {
             text-decoration: none;
             color: var(--text);
@@ -224,6 +224,12 @@
                 padding: 20px;
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             }
+            .logo{
+                margin: 0 auto;
+                position: relative;
+                left: auto;
+                transform: none;
+            }
             .nav-links.active {
                 display: flex;
             }
@@ -286,18 +292,19 @@
     <header>
         <div class="container">
             <nav class="navbar">
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
                 <a href="index.html" class="logo">
                     <i class="fas fa-graduation-cap"></i>
                     LearnSphere
                 </a>
-                <div class="hamburger" id="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
+                
                 <ul class="nav-links" id="nav-links">
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="course.html" class="nav-link">Courses</a></li>
                     <li><a href="about.html">About</a></li>
-                     <li><a href="contact-us.html">About</a></li>
+                     <li><a href="contact-us.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -462,7 +469,6 @@
                 coursePrice.textContent = course.price;
                 courseDescription.textContent = course.description;
                 courseDetails.textContent = course.details;
-                courseProgress.style.width = `${course.progress}%`;
             } else {
                 courseLoading.style.display = 'none';
                 courseError.style.display = 'block';
