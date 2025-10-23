@@ -101,7 +101,7 @@ header {
   font-weight: 500;
   font-size: 16px;
   transition: var(--transition);
-  margin: 0; /* remove large right margin */
+  margin: 0; 
 }
 
 .nav-links li a:hover {
@@ -217,6 +217,8 @@ header {
   .nav-links {
     display: none;
     flex-direction: column;
+    align-items: flex-start; 
+    text-align: left; 
     width: 100%;
     position: absolute;
     top: 70px;
