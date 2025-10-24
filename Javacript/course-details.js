@@ -8,7 +8,7 @@
                     description: 'Learn the basics of Python programming, including syntax, variables, and functions.',
                     instructor: 'Aswathi K',
                     rating: 4.5,
-                    youtubeLink: 'https://www.youtube.com/embed/K5KVEU3aaeQ', // Example YouTube embed link 
+                    youtubeLink: 'https://www.youtube.com/embed/K5KVEU3aaeQ',  
                     duration: '4 weeks',
                     lessons: 12,
                     price: '$49.99',
@@ -24,7 +24,7 @@
                     description: 'Master modern web technologies like React, Node.js, and advanced CSS.',
                     instructor: 'Nihala AT',
                     rating: 4.8,
-                    youtubeLink: 'https://www.youtube.com/embed/3JluqTojuME', // Example YouTube embed link
+                    youtubeLink: 'https://www.youtube.com/embed/3JluqTojuME', 
                     duration: '6 weeks',
                     lessons: 18,
                     price: '$89.99',
@@ -40,7 +40,7 @@
                     description: 'Explore data analysis and visualization using R programming language.',
                     instructor: 'Chriz Annet',
                     rating: 4.3,
-                    youtubeLink: 'https://www.youtube.com/embed/umI0DpJEqPE', // Example YouTube embed link
+                    youtubeLink: 'https://www.youtube.com/embed/umI0DpJEqPE', 
                     duration: '5 weeks',
                     lessons: 15,
                     price: '$69.99',
@@ -56,7 +56,7 @@
                     description: 'Understand key business analytics concepts and tools to drive decisions.',
                     instructor: 'Abhilash Nair',
                     rating: 4.6,
-                    youtubeLink: 'https://www.youtube.com/embed/psusaPKLg0', // Example YouTube embed link
+                    youtubeLink: 'https://www.youtube.com/embed/diaZdX1s5L4', 
                     duration: '3 weeks',
                     lessons: 10,
                     price: '$39.99',

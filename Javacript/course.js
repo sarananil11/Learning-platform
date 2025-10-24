@@ -17,7 +17,7 @@
                     category: 'Coding',
                     difficulty: 'Beginner',
                     description: 'Learn the basics of Python programming, including syntax, variables, and functions.',
-                    instructor: '',
+                    instructor: 'Aswathi K',
                     rating: 4.5,
                     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYZqZkpMyiN2uSuT7GAf6JSkJ44YsZqoQHdw&s',
                     duration: '4 weeks',
@@ -33,7 +33,7 @@
                     category: 'Web Development',
                     difficulty: 'Advanced',
                     description: 'Master modern web technologies like React, Node.js, and advanced CSS.',
-                    instructor: '',
+                    instructor: 'Nihala AT',
                     rating: 4.8,
                     image: 'https://miro.medium.com/0*M4bxiCIjcTK-2Xr6.jpeg',
                     duration: '6 weeks',
@@ -49,7 +49,7 @@
                     category: 'Data Science',
                     difficulty: 'Intermediate',
                     description: 'Explore data analysis and visualization using R programming language.',
-                    instructor: '',
+                    instructor: 'Chriz Annet',
                     rating: 4.3,
                     image: 'https://cdn.prod.website-files.com/63ccf2f0ea97be12ead278ed/644a18b637053fa3709c5ba2_what-is-data-science.jpg',
                     duration: '5 weeks',
@@ -65,7 +65,7 @@
                     category: 'Business',
                     difficulty: 'Beginner',
                     description: 'Understand key business analytics concepts and tools to drive decisions.',
-                    instructor: '',
+                    instructor: 'Abhilash Nair',
                     rating: 4.6,
                     image: 'https://images.ctfassets.net/pdf29us7flmy/5iQM8DSaB5iF4Gd9lcJiSy/340379739c3bf1758ba1b3635716660a/business-analyst-skills.png',
                     duration: '3 weeks',
@@ -115,7 +115,7 @@
                             <span>${course.price}</span>
                             <div class="course-meta">
                                 <div class="course-instructor">
-                                     <span><span><i class="fa-solid fa-user-tie"></i>Saran Anil</span>${course.instructor}</span>
+                                     <span><span><i class="fa-solid fa-user-tie"></i></span> ${course.instructor}</span>
                                 </div>
                                 <div class="course-rating">
                                     <i class="fas fa-star"></i>
