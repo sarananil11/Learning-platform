@@ -111,7 +111,7 @@
                 courseError.style.display = 'block';
             }
 
-            // Hamburger menu functionality
+            // Hamburger 
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('nav-links');
             hamburger.addEventListener('click', () => {

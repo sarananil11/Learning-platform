@@ -18,45 +18,51 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinks.classList.toggle("active");
   });
 
-  // 📧 Form submission + EmailJS
+  //  Form submission + EmailJS
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let isValid = true;
     let errorMessage = "";
 
-    // Reset toast
+    // toast
     toastElement.classList.remove("toast-success", "toast-error");
     toastElement.querySelector(".toast-body").textContent = "";
 
-    // ✅ Validation checks
+    // Validation
+    const nameRegex = /^[A-Za-z\s]+$/;
     if (!nameInput.value.trim()) {
       errorMessage = "Please enter your name";
       isValid = false;
+    } else if (!nameRegex.test(nameInput.value.trim())) {
+      errorMessage = "Name should contain only alphabets";
+      isValid = false;
     }
 
-    //  regex:
+    // Email
     const emailRegex = /^[A-Za-z][A-Za-z0-9]*@gmail\.com$/;
-
     if (
       !emailInput.value.trim() ||
       !emailRegex.test(emailInput.value.trim())
     ) {
       errorMessage =
-        errorMessage || "Please enter a valid Gmail (letters & numbers only, starting with a letter)";
+        errorMessage ||
+        "Please enter a valid Gmail (letters & numbers only, starting with a letter)";
       isValid = false;
     }
 
+    // Subject 
     if (!subjectInput.value.trim()) {
       errorMessage = errorMessage || "Please enter a subject";
       isValid = false;
     }
 
+    // Message 
     if (!messageInput.value.trim()) {
       errorMessage = errorMessage || "Please enter your message";
       isValid = false;
     }
 
-    //  Show error toast if invalid
+    // error showing 
     if (!isValid) {
       toastElement.classList.add("toast-error");
       toastElement.querySelector(".toast-body").textContent = errorMessage;
@@ -64,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // ✅ Build data to send
+    // Build data to send
     const formData = {
       name: nameInput.value.trim(),
       email: emailInput.value.trim(),
@@ -72,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       message: messageInput.value.trim(),
     };
 
-    // 📨 Send using EmailJS
+    // EmailJS
     emailjs
       .send("service_bt6rwen", "template_hmjn5yc", formData)
       .then(() => {

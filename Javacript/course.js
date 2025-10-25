@@ -1,9 +1,9 @@
-  // Navbar functionality
+  // Navbar 
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('nav-links');
             
-            // Hamburger menu toggle
+            // Hamburger 
             hamburger.addEventListener('click', () => {
                 hamburger.classList.toggle('active');
                 navLinks.classList.toggle('active');
@@ -215,5 +215,5 @@
             setTimeout(() => {
                 coursesLoading.classList.remove('active');
                 filterAndRenderCourses();
-            }, 1000);  // 1 second loading time 
+            }, 1000); 
         });

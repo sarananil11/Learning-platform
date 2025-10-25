@@ -4,7 +4,7 @@
             const navLinkItems = navLinks.querySelectorAll('a.nav-link');
             const courseCards = document.querySelectorAll('.course-card');
 
-            // Toggle hamburger menu
+            // hamburger 
             hamburger.addEventListener('click', () => {
                 hamburger.classList.toggle('active');
                 navLinks.classList.toggle('active');

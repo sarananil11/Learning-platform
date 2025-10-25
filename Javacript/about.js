@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const navLinks = document.getElementById('nav-links');
            
 
-            // Hamburger menu toggle
+            // Hamburger 
             hamburger.addEventListener('click', () => {
                 hamburger.classList.toggle('active');
                 navLinks.classList.toggle('active');
